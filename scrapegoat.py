@@ -1,14 +1,24 @@
 from selenium import webdriver
-driver = webdriver.Chrome()
-from selenium.webdriver.chrome.options import Options
 
-# configure the webdriver to run headless
-options = Options()
-options.headless = True # hide GUI
-options.add_argument("--window-size=1920,1080") # set window size to native GUI size
-options.add_argument("start-maximized") # ensure window is full-screen
+class Website(Object):
+    def init(self):
+        self.url = "google.com"
+        self.category = "search_engine"
+        self.webdriver = webdriver.Chrome()
 
-...
-#driver = webdriver.Chrome(options=options)
+    def init(self, url, category, browser):
+        self.url = url
+        self.category = url
+        if browser.lower() == "firefox":
+            self.webdriver = webdriver.Firefox()
+        else:
+            self.webdriver = webdriver.Chrome()
+    def process():
+        self.webdriver.get(self.url)
 
-driver.get("path_to_data_source")
+
+def main():
+    w = Website()
+    w.process()
+    ww = Website("drudgereport.com", "news_agg", "Chrome")
+    ww.process()
